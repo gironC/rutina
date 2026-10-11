@@ -14,7 +14,7 @@ services:
       DB_PORT: 5432
       DB_USER: ${DB_USER:-rutina_usr}
       DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be provided}
-      DB_NAME: ${DB_NAME:-casa_rutina}
+      DB_NAME: ${DB_NAME:-rutina}
     networks:
       - red-saas
   front:
