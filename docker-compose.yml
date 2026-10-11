@@ -1,0 +1,36 @@
+services: 
+  back: 
+    container_name: rutina-back
+    build:
+      context: ./back
+    environment:
+      CORS_DOMAINS: ${CORS_DOMAINS:-https://rutina.kinova.click}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be provided}
+      ACCESS_TOKEN_EXPIRES: ${ACCESS_TOKEN_EXPIRES:-24h}
+      REFRESH_TOKEN_DAYS: ${REFRESH_TOKEN_DAYS:-15}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-.kinova.click}
+      PORT: 4000
+      DB_HOST: saas-postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-rutina_usr}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be provided}
+      DB_NAME: ${DB_NAME:-casa_rutina}
+    networks:
+      - red-saas
+  front:
+    container_name: rutina-front
+    build:
+      context: ./front
+      args:
+        NEXT_PUBLIC_IDENTITY_URL: ${NEXT_PUBLIC_IDENTITY_URL:-https://api.rutina.kinova.click}
+        NEXT_PUBLIC_QR_URL: ${NEXT_PUBLIC_QR_URL:-https://rutina.kinova.click}
+    environment:
+      NEXT_PUBLIC_IDENTITY_URL: ${NEXT_PUBLIC_IDENTITY_URL:-https://api.rutina.kinova.click}
+      NEXT_PUBLIC_QR_URL: ${NEXT_PUBLIC_QR_URL:-https://rutina.kinova.click}
+      PORT: 3000
+    networks:
+      - red-saas
+
+networks:
+  red-saas:
+    external: true
