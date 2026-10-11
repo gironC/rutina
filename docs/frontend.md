@@ -22,7 +22,7 @@ front/
 
 El proyecto debe estar codificado en typescript.
 
-El proyecto se levantará en el puerto 3100.
+El proyecto se levantará en el puerto 3000.
 
 Para los estilos de la aplicación se utilizará tailwind y DaisyUI.
 

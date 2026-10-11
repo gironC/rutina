@@ -22,11 +22,9 @@ services:
     build:
       context: ./front
       args:
-        NEXT_PUBLIC_IDENTITY_URL: ${NEXT_PUBLIC_IDENTITY_URL:-https://api.rutina.kinova.click}
-        NEXT_PUBLIC_QR_URL: ${NEXT_PUBLIC_QR_URL:-https://rutina.kinova.click}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.rutina.kinova.click}
     environment:
-      NEXT_PUBLIC_IDENTITY_URL: ${NEXT_PUBLIC_IDENTITY_URL:-https://api.rutina.kinova.click}
-      NEXT_PUBLIC_QR_URL: ${NEXT_PUBLIC_QR_URL:-https://rutina.kinova.click}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.rutina.kinova.click}
       PORT: 3000
     networks:
       - red-saas

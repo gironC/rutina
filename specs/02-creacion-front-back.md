@@ -48,7 +48,7 @@ Las variables de entorno necesarias serán:
 * DB_PORT: El puerto de postgres, por defecto 5432
 * DB_USER: El usuario de postgres
 * DB_PASSWORD: La contraseña del usuario de postgres
-* DB_NAME: El nombre de la base de datos, por defecto cards_regalos
+* DB_NAME: El nombre de la base de datos, por defecto rutina
 
 En `src/config/` se definen los siguientes archivos:
 * Un archivo para listar todas las variables de entorno y poder utilizarlas en el proyecto.
