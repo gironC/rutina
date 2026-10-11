@@ -5,7 +5,6 @@ set -Eeuo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 CONTAINER_NAME="saas-postgres"
 DB_ADMIN_USER="postgres"
-RUTINA_DB_PASSWORD="${RUTINA_DB_PASSWORD:-${DB_PASSWORD:-}}"
 
 run_sql() {
   local database="$1"
@@ -13,7 +12,6 @@ run_sql() {
 
   printf '\n==> Ejecutando %s en la base %s\n' "$file" "$database"
   docker exec -i \
-    --env "RUTINA_DB_PASSWORD=${RUTINA_DB_PASSWORD}" \
     "$CONTAINER_NAME" \
     psql -X -v ON_ERROR_STOP=1 -U "$DB_ADMIN_USER" -d "$database" \
     < "$SCRIPT_DIR/$file"
