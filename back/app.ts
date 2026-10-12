@@ -8,6 +8,7 @@ import fastifyStatic from "@fastify/static";
 import { env } from "./src/config/env";
 import { authRoutes } from "./src/modules/auth_routes";
 import { usuarioRoutes } from "./src/modules/usuario_routes";
+import { tareasRoutes } from "./src/modules/tareas_routes";
 
 export const app = fastify();
 
@@ -34,3 +35,4 @@ app.register(fastifyStatic, {
 
 app.register(authRoutes, { prefix: "/auth" });
 app.register(usuarioRoutes, { prefix: "/usuario" });
+app.register(tareasRoutes, { prefix: "/tareas" });

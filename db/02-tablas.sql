@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS public.tarea (
   descripcion text,
   es_mensual boolean,
   es_unica boolean,
-  fecha_ejecucion date,
+  fecha_inicio date,
+  fecha_fin date,
   hora_inicio time,
   hora_fin time,
   recurrencia text,
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS public.ocurrencia (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   tarea_id uuid REFERENCES public.tarea (id),
   descripcion text,
+  fecha_ejecucion date,
   estado public.estado_ocurrencia,
   creacion timestamptz DEFAULT now(),
   modificacion timestamptz

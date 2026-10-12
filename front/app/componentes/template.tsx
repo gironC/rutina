@@ -4,8 +4,8 @@ import { Menu, Moon, Sun, X, type LucideIcon } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 const THEME_STORAGE_KEY = "kinova-theme";
-const LIGHT_THEME = "kinova";
-const DARK_THEME = "kinova-dark";
+const LIGHT_THEME = "cartas";
+const DARK_THEME = "cartas-dark";
 
 export type TemplateMenuOption = {
   icon: LucideIcon;

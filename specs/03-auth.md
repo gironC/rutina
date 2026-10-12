@@ -73,12 +73,6 @@ Dentro de los métodos a crear están los siguientes:
   * Se elimina la cookie.
   * Se retorna true.
 
-* sistemas
-  * Tipo GET
-  * No obtiene parámetros en el body
-  * Consulta a la tabla sistema el listado de registros que tengan el valor de activo true.
-  * Retorna el listado de registros en formato JSON.
-
 Crear los archivos de rutas y servicios para usuario en `src/modules`.
 
 Las rutas se exportan y se registran en `app.ts` con el prefijo `usuario/` para todas las rutas.

@@ -280,14 +280,3 @@ export async function logoutUser(refresh_token: string | undefined): Promise<tru
     return throwSafeError(error);
   }
 }
-
-export async function getActiveSystems(): Promise<Record<string, unknown>[]> {
-  try {
-    const result = await database_pool.query(
-      "SELECT * FROM public.sistema WHERE activo IS TRUE",
-    );
-    return result.rows;
-  } catch (error) {
-    return throwSafeError(error);
-  }
-}

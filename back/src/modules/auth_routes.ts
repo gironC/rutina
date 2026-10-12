@@ -2,7 +2,6 @@ import type { FastifyInstance, FastifyReply } from "fastify";
 import { env } from "../config/env";
 import {
   AuthServiceError,
-  getActiveSystems,
   loginUser,
   logoutUser,
   refreshAccessToken,
@@ -80,14 +79,6 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
       return reply.send(result);
     } catch (error) {
       reply.clearCookie("rutina_sesion", cookieOptions());
-      return sendError(reply, error);
-    }
-  });
-
-  app.get("/sistemas", async (_request, reply) => {
-    try {
-      return reply.send(await getActiveSystems());
-    } catch (error) {
       return sendError(reply, error);
     }
   });
