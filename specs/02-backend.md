@@ -2,7 +2,7 @@
 
 ## Estado
 
-En desarrollo
+Aceptada
 
 ## Definición
 
@@ -48,8 +48,8 @@ Dentro de los métodos a crear están los siguientes:
   * Obtiene la cookie `rutina_sesion`. Si la cookie no existe retorna un error.
   * Se encripta el valor de la cookie con node:crypto usando como llave la variable de entorno `JWT_SECRET` y el valor encriptado se busca en el campo hash de la tabla refresh_token.
   * Si el registro no existe se elimina la cookie y se retorna un error.
-  * Si el registro encontrado tiene fecha de vencimiento mayor a la fecha de hoy, se elimina el registro de base de datos, se elimina la cookie y se retorna un error.
-  * Si el registro encontrado tiene fecha de vencimiento menor a la fecha de hoy, toma el usuario_id del registro y busca en la tabla usuario el registro correspondiente al id.
+  * Si el registro encontrado tiene fecha de menor mayor a la fecha de hoy, se elimina el registro de base de datos, se elimina la cookie y se retorna un error.
+  * Si el registro encontrado tiene fecha de vencimiento mayor a la fecha de hoy, toma el usuario_id del registro y busca en la tabla usuario el registro correspondiente al id.
   * Se crea un jwt adicionando el id del usuario en el campo `sub`.
   * La expiración del JWT se toma de la variable de entorno ACCESS_TOKEN_EXPIRES.
   * Se retorna el JWT como respuesta en formato JSON.

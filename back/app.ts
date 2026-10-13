@@ -7,8 +7,9 @@ import multipart from "@fastify/multipart";
 import fastifyStatic from "@fastify/static";
 import { env } from "./src/config/env";
 import { authRoutes } from "./src/modules/auth_routes";
-import { usuarioRoutes } from "./src/modules/usuario_routes";
+import { ocurrenciasRoutes } from "./src/modules/ocurrencias_routes";
 import { tareasRoutes } from "./src/modules/tareas_routes";
+import { sendApiError } from "./src/services/api_errors";
 
 export const app = fastify();
 
@@ -33,6 +34,14 @@ app.register(fastifyStatic, {
   root: path.resolve(process.cwd(), "public"),
 });
 
+app.setErrorHandler((error, _request, reply) => {
+  try {
+    return sendApiError(reply, error);
+  } catch {
+    return reply.code(500).send({ error: "No fue posible completar la solicitud." });
+  }
+});
+
 app.register(authRoutes, { prefix: "/auth" });
-app.register(usuarioRoutes, { prefix: "/usuario" });
 app.register(tareasRoutes, { prefix: "/tareas" });
+app.register(ocurrenciasRoutes, { prefix: "/ocurrencias" });
