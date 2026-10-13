@@ -74,14 +74,14 @@ Dentro de los métodos a crear están los siguientes:
   * Tipo POST
   * Obtiene nombre, descripcion, tipo, hora_inicio, hora_fin, fecha_inicio, fecha_fin y recurrencia en el body.
   * Obtiene el JWT y verifica que sea válido.
-  * Crea el registro en la tabla tarea usando para usuario_id el valor de `sub` del `JWT`.
+  * Crea el registro en la tabla tarea usando para usuario_id el valor de `sub` del `JWT`. Validar que los campos que pueden ser null en base de datos pueden no venir en el body.
   * Retorna el id de registro creado.
 
 * modificar
   * Tipo POST
   * Obtiene id, nombre, descripción, tipo, hora_inicio, hora_fin, fecha_inicio, fecha_fin, recurrencia y activo en el body.
   * Obtiene el JWT y verifica que sea válido.
-  * Modifica el registro de la tabla tarea filtrando por el id recibido y dejando en el campo modificacion el valor de now().
+  * Modifica el registro de la tabla tarea filtrando por el id recibido y dejando en el campo modificacion el valor de now(). Validar que los campos que pueden ser null en base de datos pueden no venir en el body.
   * Retorna true si la operación fue exitosa.
 
 * detalle
