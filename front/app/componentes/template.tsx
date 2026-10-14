@@ -83,7 +83,7 @@ export default function DashboardTemplate({
           <h1 className="text-3xl sm:text-4xl">
             {pageTitle}
           </h1>
-          <section className="card md:p-8 flex-1 border border-base-300 bg-base-100 shadow-lg">
+          <section className="card md:p-8 flex-1 bg-base-100 shadow-lg">
             <div className="card-body min-h-0">{children}</div>
           </section>
         </main>

@@ -17,6 +17,11 @@ interface LoginBody {
   contrasena?: unknown;
 }
 
+interface ActualizarPerfilBody {
+  nombres?: unknown;
+  apellidos?: unknown;
+}
+
 function hashRefreshToken(token_sesion: string): string {
   try {
     return createHmac("sha256", env.JWT_SECRET).update(token_sesion).digest("hex");
@@ -193,6 +198,28 @@ export async function logout(rutina_sesion: string): Promise<boolean> {
     });
 
     return true;
+  } catch (error) {
+    throw toApiError(error);
+  }
+}
+
+export async function actualizarPerfil(
+  datos: ActualizarPerfilBody,
+  usuario_id: string,
+): Promise<boolean> {
+  try {
+    const nombres = requireString(datos?.nombres, "nombres");
+    const apellidos = requireString(datos?.apellidos, "apellidos");
+
+    return await withDatabaseTransaction(usuario_id, async (client) => {
+      const usuario_resultado = await client.query(
+        `UPDATE usuario
+         SET nombres = $1, apellidos = $2, modificacion = now()
+         WHERE id = $3`,
+        [nombres, apellidos, usuario_id],
+      );
+      return usuario_resultado.rowCount === 1;
+    });
   } catch (error) {
     throw toApiError(error);
   }

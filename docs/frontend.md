@@ -36,4 +36,4 @@ Para los estilos de la aplicación se utilizará tailwind y DaisyUI.
 * Todas las funciones deben usar camelCase.
 * Priorizar siempre componentes de DaisyUI para los estilos, seguido de las clases de tailwind.
 * Evitar lo máximo posible el uso de estilos propios.
-* Para todos los cards se utilizará shadow-md, card-border y border-base-content/10.
+* Para todos los cards se utilizará shadow-md.

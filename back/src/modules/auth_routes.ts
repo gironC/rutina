@@ -1,7 +1,8 @@
 import type { FastifyPluginAsync, FastifyReply } from "fastify";
 import { env } from "../config/env";
+import { verifyJwt } from "../middleware/verify_jwt";
 import { ApiError, sendApiError, toApiError } from "../services/api_errors";
-import { login, logout, refresh, registro } from "./auth_service";
+import { actualizarPerfil, login, logout, refresh, registro } from "./auth_service";
 
 interface CredencialesBody {
   usuario: string;
@@ -9,6 +10,11 @@ interface CredencialesBody {
 }
 
 interface RegistroBody extends CredencialesBody {
+  nombres: string;
+  apellidos: string;
+}
+
+interface ActualizarPerfilBody {
   nombres: string;
   apellidos: string;
 }
@@ -92,6 +98,18 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
         return sendApiError(reply, error);
       }
     });
+
+    app.post<{ Body: ActualizarPerfilBody }>(
+      "/actualizar_perfil",
+      { preHandler: verifyJwt },
+      async (request, reply) => {
+        try {
+          return reply.send(await actualizarPerfil(request.body, request.user.sub));
+        } catch (error) {
+          return sendApiError(reply, error);
+        }
+      },
+    );
   } catch (error) {
     throw toApiError(error);
   }

@@ -36,7 +36,7 @@ Cuando el usuario solicite implementar una especificación, el agente deberá:
 - Leer AGENTS.md (este archivo)
 - Leer docs/infraestructura.md
 - Leer la especificación correspondiente al proyecto correspondiente
-- Validar que la especificación se encuentre en estado "Aceptada", de lo contrario, preguntar al usuario si se debe proceder con la implementación.
+- Validar que la especificación se encuentre en estado `Aceptada`, de lo contrario, preguntar al usuario si se debe proceder con la implementación.
 - Identificar los archivos afectados.
 - Revisar dependencias entre los archivos.
 - Implementar los cambios necesarios.

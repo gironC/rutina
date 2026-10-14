@@ -64,6 +64,13 @@ Dentro de los métodos a crear están los siguientes:
   * Se elimina la cookie.
   * Se retorna true.
 
+* actualizarPerfil
+  * Tipo POST
+  * Obtiene nombres y apellidos en el body
+  * Obtiene el JWT y verifica que sea válido.
+  * Modifica el registro de la tabla usuario usando el valor de `sub` del JWT como id del usuario.
+  * Retorna true si la operación fue exitosa.
+
 Crear los archivos de rutas y servicios para tareas en `src/modules`.
 
 Las rutas se exportan y se registran en `app.ts` con el prefijo `tareas/` para todas las rutas.
@@ -74,7 +81,7 @@ Dentro de los métodos a crear están los siguientes:
   * Tipo POST
   * Obtiene nombre, descripcion, tipo, hora_inicio, hora_fin, fecha_inicio, fecha_fin y recurrencia en el body.
   * Obtiene el JWT y verifica que sea válido.
-  * Crea el registro en la tabla tarea usando para usuario_id el valor de `sub` del `JWT`. Validar que los campos que pueden ser null en base de datos pueden no venir en el body.
+  * Crea el registro en la tabla tarea usando para usuario_id el valor de `sub` del JWT. Validar que los campos que pueden ser null en base de datos pueden no venir en el body.
   * Retorna el id de registro creado.
 
 * modificar
