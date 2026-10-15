@@ -26,6 +26,14 @@ interface TaskBody {
   fecha_fin_rango?: unknown;
 }
 
+function requireRecurrencia(value: unknown): string {
+  if (typeof value !== "string") {
+    throw new ApiError(400, "El campo recurrencia es obligatorio.");
+  }
+
+  return value.trim();
+}
+
 async function listTasksByType(
   usuario_id: string,
   fecha_inicio: string,
@@ -104,7 +112,7 @@ export async function crear(datos: TaskBody, usuario_id: string): Promise<string
     const hora_fin = optionalNullableString(datos?.hora_fin, "hora_fin") ?? null;
     const fecha_inicio = requireDate(datos?.fecha_inicio, "fecha_inicio");
     const fecha_fin = optionalNullableString(datos?.fecha_fin, "fecha_fin") ?? null;
-    const recurrencia = requireString(datos?.recurrencia, "recurrencia");
+    const recurrencia = requireRecurrencia(datos?.recurrencia);
 
     return await withDatabaseTransaction(usuario_id, async (client) => {
       const tarea_resultado = await client.query<{ id: string }>(
@@ -136,7 +144,7 @@ export async function modificar(datos: TaskBody, usuario_id: string): Promise<bo
     campos.push({ nombre: "tipo", valor: tipo });
     const fecha_inicio = requireDate(datos?.fecha_inicio, "fecha_inicio");
     campos.push({ nombre: "fecha_inicio", valor: fecha_inicio });
-    campos.push({ nombre: "recurrencia", valor: requireString(datos?.recurrencia, "recurrencia") });
+    campos.push({ nombre: "recurrencia", valor: requireRecurrencia(datos?.recurrencia) });
     campos.push({ nombre: "activo", valor: requireBoolean(datos?.activo, "activo") });
 
     for (const nombre of ["hora_inicio", "hora_fin", "fecha_fin"] as const) {

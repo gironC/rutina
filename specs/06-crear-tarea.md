@@ -2,7 +2,7 @@
 
 ## Estado
 
-En desarrollo
+Aceptada
 
 ## Definición
 
@@ -45,4 +45,4 @@ Modificar el page del componente `dashboard/crear`
       * Si se especifica fecha de finalización diferente a fecha de inicio y se selecciona al menos un día de la semana, el tipo de tarea es `Repetitiva`. Este tipo de tareas se ejecuta cada día seleccionado.
 
   * Se muestra un botón para enviar el formulario con el texto `Crear tarea`.
-  * El botón toma los datos y los envía al backend a la ruta `tareas/crear`.
+  * El botón toma los datos y los envía al backend a la ruta `tareas/crear`. Para el campo tipo se toman las validaciones escritas anteriormente. Si la creación es exitosa se limpia todo el formulario.
